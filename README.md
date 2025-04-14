@@ -165,9 +165,6 @@ Similarly, to run only the client:
 - **Advanced GUI Features:**  
   Additional client features such as frame-by-frame navigation and adjustable streaming parameters.
 
-## License
-
-This project is provided under the [MIT License](LICENSE).
 
 ---
 
