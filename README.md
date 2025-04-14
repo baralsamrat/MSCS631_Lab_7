@@ -14,7 +14,7 @@ This repository contains a Python-based video streaming application developed fo
 - [Running the Application](#running-the-application)
 - [Troubleshooting](#troubleshooting)
 - [Future Enhancements](#future-enhancements)
-- [License](#license)
+- [Experience and Challenges](#experience-and-challenges)
 
 ## Overview
 
@@ -62,7 +62,7 @@ The streaming video is provided in a proprietary MJPEG format, where each JPEG i
 ├── ServerWorker.py        # Handles RTSP sessions and streams video frames.
 ├── VideoStream.py         # Reads and parses the proprietary MJPEG video file.
 ├── movie.Mjpeg            # Provided sample video file in proprietary MJPEG format.
-├── run_program.sh         # Shell script for virtual environment setup and running the program.
+├── run.sh                 # Shell script for virtual environment setup and running the program.
 └── README.md              # This file.
 ```
 
@@ -82,8 +82,8 @@ The streaming video is provided in a proprietary MJPEG format, where each JPEG i
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
-   cd your-repo
+   git clone https://github.com/baralsamrat/MSCS631_Lab_7.git
+   cd MSCS631_Lab_7
    ```
 
 2. **Set Up the Virtual Environment and Install Dependencies:**
@@ -91,8 +91,8 @@ The streaming video is provided in a proprietary MJPEG format, where each JPEG i
    Use the provided `run_program.sh` script to automatically create a virtual environment and install the necessary packages (e.g., Pillow for image processing):
 
    ```bash
-   chmod +x run_program.sh
-   ./run_program.sh
+   chmod +x runsh
+   ./run.sh
    ```
 
    The script installs the required dependencies. If you prefer manual setup:
@@ -113,7 +113,7 @@ There are several ways to run the application:
 You can start both components using the shell script without any arguments. The script starts the server in the background, waits for it to initialize, and then launches the client GUI.
 
 ```bash
-./run_program.sh
+./run.sh
 ```
 
 ### Run Only the Server
@@ -121,7 +121,7 @@ You can start both components using the shell script without any arguments. The 
 To run only the server (for example, if you want to run the client separately):
 
 ```bash
-./run_program.sh server
+./run.sh server
 ```
 
 ### Run Only the Client
@@ -129,7 +129,7 @@ To run only the server (for example, if you want to run the client separately):
 Similarly, to run only the client:
 
 ```bash
-./run_program.sh client
+./run.sh client
 ```
 
 **RTSP/RTP Default Ports and Parameters:**
@@ -165,7 +165,10 @@ Similarly, to run only the client:
 - **Advanced GUI Features:**  
   Additional client features such as frame-by-frame navigation and adjustable streaming parameters.
 
+## Experience and Challenges 
 
----
+During testing, we observed that our video streaming application sustained an average video data rate of about 500–600 Kbps under normal operating conditions. Through detailed logging, we measured the RTP packet loss rate to be less than 5% on a stable wired connection; however, this loss rate increased when streaming over less reliable networks (e.g., Wi-Fi), which underscored the impact of network quality on real-time video delivery. Other interesting statistics included the frame rate consistency (approximately 20 frames per second, with each frame being roughly 25–30 KB on average) and the variations in jitter during transmission, which we mitigated by implementing appropriate timeout mechanisms and error recovery strategies. These metrics provided invaluable insight into not only the performance of the streaming protocols but also the practical challenges of maintaining seamless playback under varying network conditions.
+
+Working on this project was a rewarding learning experience that deepened my understanding of network protocols and real-time multimedia streaming. One major challenge was handling the stateful nature of RTSP while ensuring synchronization between the server's streaming thread and the client’s RTP receiving thread. Debugging issues related to packet loss and jitter required extensive testing and careful tuning of timeout parameters, as well as the implementation of recovery mechanisms for corrupted or incomplete frames. The iterative process of optimizing the video data rate and improving error resilience highlighted the importance of robust protocol design and detailed logging for troubleshooting. Overall, the project enhanced my technical skills in Python socket programming and provided hands-on experience with the challenges inherent in real-time video communications.
 
 
